@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La Favolosa – Gelato Artigianale in Thun | täglich frisch</title>
+  <meta name="description" content="Echtes italienisches Gelato, jeden Tag frisch im eigenen Laboratorio in Thun gemacht – ohne künstliche Zusatzstoffe. 5 Lokale in Thun, Gwatt & Münsingen, Catering & Gelato-Coolbox für Events." />
+  <meta name="theme-color" content="#FBF5EE" />
+  <link rel="canonical" href="https://www.favolosa.ch/" />
+  <link rel="icon" type="image/png" href="assets/img/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_CH" />
+  <meta property="og:url" content="https://www.favolosa.ch/" />
+  <meta property="og:title" content="La Favolosa – Gelato Artigianale in Thun" />
+  <meta property="og:description" content="Jeden Tag frisch. Ohne künstliche Zusatzstoffe. Ohne Wenn und Aber." />
+  <meta property="og:image" content="https://www.favolosa.ch/assets/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Alle Schriften & Bibliotheken lokal: keine Datenübermittlung an Google/CDNs -->
+  <link rel="preload" href="assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/dmsans-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="assets/vendor/lenis.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script>document.documentElement.classList.add("js")</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "IceCreamShop",
+    "name": "Gelateria La Favolosa",
+    "url": "https://www.favolosa.ch/",
+    "telephone": "+41788822527",
+    "image": "https://www.favolosa.ch/assets/img/og-image.jpg",
+    "logo": "https://www.favolosa.ch/assets/img/logo.png",
+    "servesCuisine": "Italienisches Gelato",
+    "priceRange": "CHF",
+    "address": { "@type": "PostalAddress", "streetAddress": "Bälliz 60", "postalCode": "3600", "addressLocality": "Thun", "addressCountry": "CH" },
+    "sameAs": ["https://www.instagram.com/gelateria_la_favolosa/", "https://www.facebook.com/GelateriaLaFavolosa"],
+    "department": [
+      { "@type": "IceCreamShop", "name": "La Favolosa Bälliz", "address": { "@type": "PostalAddress", "streetAddress": "Bälliz 60", "postalCode": "3600", "addressLocality": "Thun", "addressCountry": "CH" }, "openingHours": "Mo-Su 12:30-17:30" },
+      { "@type": "IceCreamShop", "name": "La Favolosa Mühleplatz", "address": { "@type": "PostalAddress", "streetAddress": "Mühleplatz 34", "postalCode": "3600", "addressLocality": "Thun", "addressCountry": "CH" }, "openingHours": "Mo-Su 09:00-22:00" },
+      { "@type": "IceCreamShop", "name": "La Favolosa Gwatt", "address": { "@type": "PostalAddress", "streetAddress": "Gwattstrasse 68", "postalCode": "3645", "addressLocality": "Gwatt", "addressCountry": "CH" }, "openingHours": ["Mo-Sa 12:30-18:00", "Su 09:30-18:00"] },
+      { "@type": "IceCreamShop", "name": "La Favolosa Bahnhof Thun", "address": { "@type": "PostalAddress", "streetAddress": "Bahnhof Thun", "postalCode": "3600", "addressLocality": "Thun", "addressCountry": "CH" }, "openingHours": "Mo-Su 08:00-21:30" },
+      { "@type": "IceCreamShop", "name": "La Favolosa Münsingen", "address": { "@type": "PostalAddress", "streetAddress": "Neue Bahnhofstrasse 2", "postalCode": "3110", "addressLocality": "Münsingen", "addressCountry": "CH" } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="top">
+    <div class="notice" id="notice" role="status" hidden></div>
+    <div class="header__inner container">
+      <a href="#top" class="brand" aria-label="La Favolosa – zur Startseite">
+        <img src="assets/img/logo.png" alt="La Favolosa – gelateria artigianale" width="317" height="183" />
+      </a>
+      <nav class="nav" id="nav" aria-label="Hauptnavigation">
+        <a href="#gelati">Gelati</a>
+        <a href="#qualitaet">Qualität</a>
+        <a href="#lokale">Lokale</a>
+        <a href="#events">Events</a>
+        <a href="#jobs">Jobs</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#kontakt" data-topic="gutschein" class="btn btn--small btn--dark nav__cta">Gutschein</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <p class="eyebrow"><span class="dot dot--live" id="liveDot"></span><span id="liveText">Gelateria artigianale · Thun</span></p>
+          <h1 class="hero__title">
+            Gelato, wie in <em>Italia.</em><br />Gemacht in Thun.
+          </h1>
+          <p class="hero__lead">
+            Jeden Morgen frisch in unserem Laboratorio im Bälliz – aus natürlichen Zutaten,
+            nach der traditionellen Kunst des <em>gelato artigianale</em>. Ohne künstliche Zusatzstoffe. Ohne Wenn und Aber.
+          </p>
+          <div class="hero__actions">
+            <a href="#lokale" class="btn btn--dark">Lokal finden <span aria-hidden="true">→</span></a>
+            <a href="#gelati" class="btn btn--ghost">Unsere Sorten</a>
+          </div>
+          <ul class="hero__facts">
+            <li><strong>5</strong><span>Lokale rund um Thun</span></li>
+            <li><strong>0</strong><span>künstliche Zusatzstoffe</span></li>
+            <li><strong>365</strong><span>Tage frisch gemacht</span></li>
+          </ul>
+        </div>
+
+        <div class="hero__visual">
+          <figure class="arch arch--big" data-parallax="-8">
+            <picture>
+              <source type="image/webp" srcset="assets/img/fragola-becher-800.webp 800w, assets/img/fragola-becher.webp 1600w" sizes="(max-width: 860px) 90vw, 45vw" />
+              <img src="assets/img/fragola-becher.jpg" srcset="assets/img/fragola-becher-800.jpg 800w, assets/img/fragola-becher.jpg 1600w" sizes="(max-width: 860px) 90vw, 45vw" alt="Fragola-Sorbet im La-Favolosa-Becher mit frischen Erdbeeren" width="1600" height="1200" fetchpriority="high" />
+            </picture>
+          </figure>
+          <figure class="blob" data-parallax="12">
+            <picture>
+              <source type="image/webp" srcset="assets/img/kind-cono-800.webp 800w, assets/img/kind-cono.webp 1600w" sizes="(max-width: 860px) 45vw, 22vw" />
+              <img src="assets/img/kind-cono-800.jpg" srcset="assets/img/kind-cono-800.jpg 800w, assets/img/kind-cono.jpg 1600w" sizes="(max-width: 860px) 45vw, 22vw" alt="Mädchen mit Gelato-Cono an der Theke" width="1600" height="1067" />
+            </picture>
+          </figure>
+          <div class="badge" aria-hidden="true">
+            <svg viewBox="0 0 200 200" class="badge__ring">
+              <defs><path id="circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" /></defs>
+              <text><textPath href="#circle" textLength="486" lengthAdjust="spacing">ogni giorno fresco · täglich frisch ·</textPath></text>
+            </svg>
+            <span class="badge__icon">Thun</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-label="Typische Sorten">
+      <div class="marquee__track">
+        <div class="marquee__group"><span>Pistacchio</span><i>✦</i><span>Fior di Latte</span><i>✦</i><span>Stracciatella</span><i>✦</i><span>Nocciola</span><i>✦</i><span>Fragola</span><i>✦</i><span>Amarena</span><i>✦</i><span>Limone</span><i>✦</i><span>Tiramisù</span><i>✦</i><span>Cioccolato</span><i>✦</i><span>Mango</span><i>✦</i></div>
+        <div class="marquee__group" aria-hidden="true"><span>Pistacchio</span><i>✦</i><span>Fior di Latte</span><i>✦</i><span>Stracciatella</span><i>✦</i><span>Nocciola</span><i>✦</i><span>Fragola</span><i>✦</i><span>Amarena</span><i>✦</i><span>Limone</span><i>✦</i><span>Tiramisù</span><i>✦</i><span>Cioccolato</span><i>✦</i><span>Mango</span><i>✦</i></div>
+      </div>
+    </div>
+
+    <!-- ============ MANIFEST ============ -->
+    <section class="manifest container">
+      <p class="eyebrow">La nostra filosofia</p>
+      <p class="manifest__text" data-reveal-words>
+        Wir wollen den intensiven Geschmack einer einzigen, natürlichen Zutat betonen. Darum kennen wir unsere Produzenten persönlich – und verzichten auf künstliche Emulgatoren, Aromen, Farb- und Konservierungsstoffe.
+      </p>
+    </section>
+
+    <!-- ============ GELATI ============ -->
+    <section class="section gelati" id="gelati">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Le nostre specialità</p>
+          <h2 class="h2">Was heute in die <em>Pozzetti</em> kommt</h2>
+          <p class="section__lead">Unsere Sorten wechseln jeden Tag – je nach Saison, Zutaten, Kundenwunsch, Lust und Laune. Ein Vorgeschmack:</p>
+        </header>
+
+        <div class="flavor-grid">
+          <article class="flavor-card flavor-card--milk" data-reveal>
+            <div class="flavor-card__top">
+              <span class="tag">Gelati alla crema</span>
+              <h3>Milchsorten</h3>
+              <p>Frische Vollmilch und Rahm aus der Dorfchäsi Noflen, kombiniert mit den besten Zutaten Italiens.</p>
+            </div>
+            <ul class="chips" data-flavors="milch">
+              <li>Fior di Latte</li><li>Stracciatella</li><li>Pistacchio</li><li>Nocciola</li><li>Cioccolato</li><li>Caffè</li>
+              <li>Vaniglia</li><li>Amarena</li><li>Jamaica</li><li>Joghurt</li><li>Tiramisù</li><li>Cookies</li>
+            </ul>
+          </article>
+
+          <article class="flavor-card flavor-card--sorbet" data-reveal>
+            <div class="flavor-card__top">
+              <span class="tag">Sorbetti</span>
+              <h3>Sorbets</h3>
+              <p>Pure Frucht, Wasser, Zucker – sonst nichts. Erfrischend, vegan und voller Sonne.</p>
+            </div>
+            <ul class="chips" data-flavors="sorbet">
+              <li>Fragola</li><li>Mango</li><li>Limone</li><li>Banana</li><li>Lampone</li><li>Frutto della Passione</li><li>Frutti di Bosco</li>
+            </ul>
+          </article>
+
+          <figure class="flavor-photo" data-reveal>
+            <picture>
+              <source type="image/webp" srcset="assets/img/kinder-gelato-800.webp 800w, assets/img/kinder-gelato.webp 1600w" sizes="(max-width: 1240px) 100vw, 1200px" />
+              <img src="assets/img/kinder-gelato.jpg" srcset="assets/img/kinder-gelato-800.jpg 800w, assets/img/kinder-gelato.jpg 1600w" sizes="(max-width: 1240px) 100vw, 1200px" alt="Zwei Kinder geniessen Gelato vor der Gelateria" loading="lazy" width="1600" height="1067" />
+            </picture>
+          </figure>
+        </div>
+
+        <ul class="origins">
+          <li data-reveal><span class="origins__icon" style="--c:#A9C79A"></span><strong>Pistazien</strong><span>pur aus Sizilien</span></li>
+          <li data-reveal><span class="origins__icon" style="--c:#C9A27E"></span><strong>Haselnüsse</strong><span>aus dem Piemont</span></li>
+          <li data-reveal><span class="origins__icon" style="--c:#F3EDE2"></span><strong>Milch &amp; Rahm</strong><span>Dorfchäsi Noflen</span></li>
+          <li data-reveal><span class="origins__icon" style="--c:#6B4636"></span><strong>Kakao</strong><span>von Cailler</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ QUALITÄT / POZZETTI ============ -->
+    <section class="section quality" id="qualitaet">
+      <div class="container quality__grid">
+        <figure class="quality__img" data-reveal>
+          <picture>
+            <source type="image/webp" srcset="assets/img/pozzetti-800.webp 800w, assets/img/pozzetti.webp 1299w" sizes="(max-width: 860px) 100vw, 50vw" />
+            <img src="assets/img/pozzetti.jpg" srcset="assets/img/pozzetti-800.jpg 800w, assets/img/pozzetti.jpg 1299w" sizes="(max-width: 860px) 100vw, 50vw" alt="Mitarbeiterin serviert Gelato aus geschlossenen Pozzetti" loading="lazy" width="1299" height="867" />
+          </picture>
+        </figure>
+        <div class="quality__text">
+          <p class="eyebrow eyebrow--light">Pozzetti – ein Zeichen für Qualität</p>
+          <h2 class="h2">Darum siehst du unser Gelato erst im <em>Cono</em>.</h2>
+          <p>Statt in offenen Vitrinen lagern wir unser Gelato in traditionellen, geschlossenen Behältern – den Pozzetti. Dort bleibt es perfekt gekühlt, geschützt vor Luft und Licht.</p>
+          <ul class="checks">
+            <li>Konstante Temperatur – keine Eiskristalle</li>
+            <li>Keine Oxidation an der Oberfläche</li>
+            <li>Schmeckt am Abend so frisch wie am Morgen</li>
+          </ul>
+          <div class="steps">
+            <div><span>01</span>Beste Rohstoffe von Produzenten, die wir kennen</div>
+            <div><span>02</span>Jeden Tag frisch im Laboratorio Bälliz 60</div>
+            <div><span>03</span>Gelagert in Pozzetti, serviert mit Herz</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOKALE ============ -->
+    <!-- Öffnungszeiten werden aus content.js übernommen; die Zeiten hier sind der Fallback ohne JavaScript. -->
+    <section class="section lokale" id="lokale">
+      <div class="container">
+        <header class="section__head section__head--row">
+          <div>
+            <p class="eyebrow">Dove siamo</p>
+            <h2 class="h2">Fünf Lokale. <em>Ein</em> Gelato.</h2>
+          </div>
+          <p class="section__lead">Öffnungszeiten können je nach Wetter variieren. Live-Status basiert auf den regulären Zeiten.</p>
+        </header>
+
+        <div class="locations" id="locations">
+          <article class="loc" data-reveal data-loc="baelliz">
+            <div class="loc__head"><h3>Bälliz</h3><span class="status">–</span></div>
+            <p class="loc__tag">Die Pause nach dem Einkaufen</p>
+            <p class="loc__desc">Unser Tiny-Lokal am Anfang der Einkaufsstrasse – klein, aber fein, mit viel italienischem Charme. Hier ist auch unser Laboratorio.</p>
+            <dl class="loc__hours"><dt>Mo–So</dt><dd>12:30 – 17:30</dd></dl>
+            <a class="loc__map" href="https://www.google.com/maps/search/?api=1&amp;query=B%C3%A4lliz+60+3600+Thun" target="_blank" rel="noopener">Bälliz 60, 3600 Thun ↗</a>
+          </article>
+
+          <article class="loc loc--feature" data-reveal data-loc="muehleplatz">
+            <picture>
+              <source type="image/webp" srcset="assets/img/terrasse-kaffee-800.webp 800w, assets/img/terrasse-kaffee.webp 1600w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+              <img src="assets/img/terrasse-kaffee-800.jpg" srcset="assets/img/terrasse-kaffee-800.jpg 800w, assets/img/terrasse-kaffee.jpg 1600w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="Gäste auf der sonnigen Terrasse am Mühleplatz" loading="lazy" width="1600" height="1067" />
+            </picture>
+            <div class="loc__body">
+              <div class="loc__head"><h3>Mühleplatz</h3><span class="status">–</span></div>
+              <p class="loc__tag">Wo man das Leben geniesst</p>
+              <p class="loc__desc">Sonniger Treffpunkt im Herzen von Thun – mit Crêpes (süss &amp; salzig), Panini, bestem italienischem Kaffee und Coupe-Kreationen.</p>
+              <dl class="loc__hours"><dt>Mo–So</dt><dd>09:00 – 22:00</dd></dl>
+              <a class="loc__map" href="https://www.google.com/maps/search/?api=1&amp;query=M%C3%BChleplatz+34+3600+Thun" target="_blank" rel="noopener">Mühleplatz 34, 3600 Thun ↗</a>
+            </div>
+          </article>
+
+          <article class="loc" data-reveal data-loc="gwatt">
+            <div class="loc__head"><h3>Gwatt</h3><span class="status">–</span></div>
+            <p class="loc__tag">Der Quartiertreff in Seenähe</p>
+            <p class="loc__desc">In der ehemaligen Gwatt-Metzg: Gelati, Kaffee oder ein Aperitivo auf der Holzterrasse. Öffentliche Parkplätze im Quartier.</p>
+            <dl class="loc__hours"><dt>Mo–Sa</dt><dd>12:30 – 18:00</dd><dt>So</dt><dd>09:30 – 18:00</dd></dl>
+            <a class="loc__map" href="https://www.google.com/maps/search/?api=1&amp;query=Gwattstrasse+68+3645+Gwatt" target="_blank" rel="noopener">Gwattstrasse 68, 3645 Gwatt ↗</a>
+          </article>
+
+          <article class="loc" data-reveal data-loc="bahnhof">
+            <div class="loc__head"><h3>Bahnhof Thun</h3><span class="status">–</span></div>
+            <p class="loc__tag">Favolosa &amp; PizzAmo</p>
+            <p class="loc__desc">Gelato für unterwegs – oder vor dem Zug noch schnell eine Pizza. Direkt am Bahnhof Thun.</p>
+            <dl class="loc__hours"><dt>Mo–So</dt><dd>08:00 – 21:30</dd></dl>
+            <a class="loc__map" href="https://www.google.com/maps/search/?api=1&amp;query=Bahnhof+Thun" target="_blank" rel="noopener">Bahnhof, 3600 Thun ↗</a>
+          </article>
+
+          <article class="loc" data-reveal data-loc="muensingen">
+            <div class="loc__head"><h3>Münsingen</h3><span class="status">–</span></div>
+            <p class="loc__tag">Gelato im Aaretal</p>
+            <p class="loc__desc">Unser Lokal direkt beim Bahnhof Münsingen.</p>
+            <dl class="loc__hours"><dt>Saison</dt><dd>März – Oktober</dd></dl>
+            <a class="loc__map" href="https://www.google.com/maps/search/?api=1&amp;query=Neue+Bahnhofstrasse+2+3110+M%C3%BCnsingen" target="_blank" rel="noopener">Neue Bahnhofstrasse 2, 3110 Münsingen ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUOTE BREAK ============ -->
+    <section class="quote-break">
+      <picture>
+        <source type="image/webp" srcset="assets/img/freundinnen-800.webp 800w, assets/img/freundinnen.webp 1067w" sizes="100vw" />
+        <img src="assets/img/freundinnen.jpg" srcset="assets/img/freundinnen-800.jpg 800w, assets/img/freundinnen.jpg 1067w" sizes="100vw" alt="Zwei Freundinnen mit Gelato in der Abendsonne" loading="lazy" width="1067" height="1600" data-parallax-bg />
+      </picture>
+      <div class="quote-break__overlay"></div>
+      <blockquote class="container">
+        <p>Es gibt nichts Besseres als eine gute Freundin.<br /><em>Ausser eine gute Freundin mit Gelati.</em></p>
+      </blockquote>
+    </section>
+
+    <!-- ============ EVENTS ============ -->
+    <section class="section events" id="events">
+      <div class="container events__grid">
+        <div class="events__text">
+          <p class="eyebrow">Catering &amp; Events</p>
+          <h2 class="h2">Dein Fest. <em>Unser</em> Gelato.</h2>
+          <p>Hochzeit, Geburtstag, Sommerfest oder Firmenjubiläum – wir kommen mit Glacewagen und Personal und verwöhnen deine Gäste mit frischem Gelato. Oder du holst dir unsere mobile Coolbox.</p>
+          <a href="#kontakt" data-topic="event" class="btn btn--dark">Anfrage senden <span aria-hidden="true">→</span></a>
+        </div>
+        <figure class="events__img" data-reveal>
+          <picture>
+            <source type="image/webp" srcset="assets/img/glacewagen-800.webp 800w, assets/img/glacewagen.webp 1600w" sizes="(max-width: 860px) 100vw, 55vw" />
+            <img src="assets/img/glacewagen.jpg" srcset="assets/img/glacewagen-800.jpg 800w, assets/img/glacewagen.jpg 1600w" sizes="(max-width: 860px) 100vw, 55vw" alt="Gelato-Glacewagen von La Favolosa an einer Hochzeit" loading="lazy" width="1600" height="1068" />
+          </picture>
+        </figure>
+      </div>
+
+      <div class="container">
+        <div class="coolbox" data-reveal>
+          <div class="coolbox__title">
+            <span class="tag tag--light">Mobil &amp; ohne Strom</span>
+            <h3>Die Gelato-Coolbox</h3>
+          </div>
+          <div class="coolbox__stats">
+            <div><strong data-count="140">140</strong><span>Kugeln (bis 12 Liter)</span></div>
+            <div><strong data-count="2">2</strong><span>Sorten nach Wahl</span></div>
+            <div><strong data-count="25">25</strong><span>kg – passt in den Kofferraum</span></div>
+          </div>
+          <ul class="coolbox__list">
+            <li>Mit Bechern und Löffeln</li>
+            <li>Lieferung oder Selbstabholung</li>
+            <li>Optional mit Glaceverkäuferin</li>
+            <li>Lagerung in Pozzetti · 52 × 60 × 30 cm</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STIMMEN ============ -->
+    <section class="section voices">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Was die Leute sagen</p>
+          <h2 class="h2">Favolosa, <em>davvero.</em></h2>
+        </header>
+        <div class="voices__grid">
+          <figure class="voice" data-reveal>
+            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+            <blockquote>«Ein Besuch bei Favolosa ist für unsere Familie ein absolutes Highlight! Unsere Kids haben sich schon durch die halbe Gelati-Palette gegessen und haben ihre 3 Lieblingssorten.»</blockquote>
+            <figcaption>Sarah R.</figcaption>
+          </figure>
+          <figure class="voice voice--pink" data-reveal>
+            <div class="stars" aria-label="5 von 5 Sternen">★★★★★</div>
+            <blockquote>«Eure Gelati ist und bleibt die beste von Thun und der ganzen Schweiz! Dazu schätzen wir auch eure zuvorkommende und herzliche Art.»</blockquote>
+            <figcaption>Simona</figcaption>
+          </figure>
+          <a class="voice voice--cta" data-reveal href="https://www.google.com/search?q=Gelateria+La+Favolosa+Thun" target="_blank" rel="noopener">
+            <span class="voice__big">Und du?</span>
+            <span>Bewerte uns auf Google ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GUTSCHEIN + JOBS ============ -->
+    <section class="section duo">
+      <div class="container duo__grid">
+        <article class="duo__card duo__card--gift" id="gutschein" data-reveal>
+          <p class="eyebrow">Regalo</p>
+          <h2 class="h3">Verschenke ein Stück Italien.</h2>
+          <p>Unsere Gutscheine sind in allen Lokalen einlösbar – das perfekte Geschenk für Gelato-Liebhaber.</p>
+          <a href="#kontakt" data-topic="gutschein" class="btn btn--dark">Gutschein bestellen</a>
+        </article>
+        <article class="duo__card duo__card--jobs" id="jobs" data-reveal>
+          <p class="eyebrow eyebrow--light">Lavora con noi · Saison <span data-jobs-season>2027</span></p>
+          <h2 class="h3">Willkommen in der Welt der Gelati.</h2>
+          <ul class="job-list" data-jobs>
+            <li>Gelato-Produktion</li><li>Gelati-Verkauf</li><li>Service</li><li>Barista</li><li>Lieferungen (Führerausweis B)</li>
+          </ul>
+          <p>Ferienjob, Saison- oder Jahresstelle – verschiedene Pensen möglich.</p>
+          <a href="#kontakt" data-topic="bewerbung" class="btn btn--light">Jetzt bewerben</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ KONTAKT / FORMULAR ============ -->
+    <section class="section contact" id="kontakt">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow">Scrivici</p>
+          <h2 class="h2">Schreib <em>uns.</em></h2>
+          <p>Ob Frage, Event-Anfrage, Gutschein oder Bewerbung – wähle dein Anliegen, wir melden uns so schnell wie möglich.</p>
+          <ul class="contact__direct">
+            <li><span>Telefon</span><a href="tel:+41788822527">078 882 25 27</a></li>
+            <li><span>Instagram</span><a href="https://www.instagram.com/gelateria_la_favolosa/" target="_blank" rel="noopener">@gelateria_la_favolosa</a></li>
+            <li><span>Laboratorio</span>Bälliz 60, 3600 Thun</li>
+          </ul>
+        </div>
+
+        <form class="form" id="form" action="send.php" method="post" enctype="multipart/form-data">
+          <fieldset class="form__topics">
+            <legend>Dein Anliegen</legend>
+            <label class="pill"><input type="radio" name="topic" value="kontakt" checked /><span>Frage</span></label>
+            <label class="pill"><input type="radio" name="topic" value="event" /><span>Event &amp; Coolbox</span></label>
+            <label class="pill"><input type="radio" name="topic" value="gutschein" /><span>Gutschein</span></label>
+            <label class="pill"><input type="radio" name="topic" value="bewerbung" /><span>Bewerbung</span></label>
+          </fieldset>
+
+          <div class="form__grid">
+            <label class="field"><span>Vorname *</span><input type="text" name="vorname" autocomplete="given-name" required maxlength="80" /></label>
+            <label class="field"><span>Nachname *</span><input type="text" name="nachname" autocomplete="family-name" required maxlength="80" /></label>
+            <label class="field"><span>E-Mail *</span><input type="email" name="email" autocomplete="email" required maxlength="120" /></label>
+            <label class="field"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" maxlength="40" /></label>
+          </div>
+
+          <fieldset class="form__extra" data-show="event">
+            <legend>Dein Anlass</legend>
+            <div class="form__grid">
+              <label class="field"><span>Datum *</span><input type="date" name="event_datum" data-required /></label>
+              <label class="field"><span>Anzahl Gäste</span><input type="number" name="event_gaeste" min="1" max="5000" /></label>
+              <label class="field"><span>Art des Anlasses</span>
+                <select name="event_art">
+                  <option>Hochzeit</option><option>Geburtstag</option><option>Firmenanlass</option><option>Sommerfest</option><option>Anderes</option>
+                </select>
+              </label>
+              <label class="field"><span>Angebot</span>
+                <select name="event_angebot">
+                  <option>Glacewagen mit Personal</option><option>Gelato-Coolbox</option><option>Noch unklar – bitte beraten</option>
+                </select>
+              </label>
+              <label class="field field--full"><span>Ort</span><input type="text" name="event_ort" maxlength="120" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__extra" data-show="gutschein">
+            <legend>Dein Gutschein</legend>
+            <div class="form__grid">
+              <label class="field"><span>Betrag (CHF) *</span>
+                <select name="gs_betrag" data-required>
+                  <option value="">Bitte wählen</option><option>20</option><option>30</option><option>50</option><option>100</option>
+                </select>
+              </label>
+              <label class="field"><span>Anzahl</span><input type="number" name="gs_anzahl" min="1" max="50" value="1" /></label>
+              <label class="field field--full"><span>Zustellung</span>
+                <select name="gs_zustellung">
+                  <option>Abholung im Lokal Bälliz</option><option>Per Post (Adresse unten)</option>
+                </select>
+              </label>
+              <label class="field field--full"><span>Postadresse (bei Versand)</span><textarea name="gs_adresse" rows="2" maxlength="300"></textarea></label>
+              <label class="field field--full"><span>Persönliche Widmung</span><input type="text" name="gs_widmung" maxlength="160" /></label>
+            </div>
+            <p class="form__note">Wir melden uns mit den Zahlungsdetails. Der Gutschein wird nach Zahlungseingang zugestellt.</p>
+          </fieldset>
+
+          <fieldset class="form__extra" data-show="bewerbung">
+            <legend>Deine Bewerbung</legend>
+            <div class="form__grid">
+              <label class="field"><span>Bereich</span>
+                <select name="job_bereich" data-jobs-select>
+                  <option>Gelato-Produktion</option><option>Gelati-Verkauf</option><option>Service</option><option>Barista</option><option>Lieferungen (Führerausweis B)</option>
+                </select>
+              </label>
+              <label class="field"><span>Pensum</span>
+                <select name="job_pensum"><option>Ferienjob</option><option>Saisonstelle</option><option>Jahresstelle</option></select>
+              </label>
+              <label class="field field--full"><span>Lebenslauf (PDF, JPG oder PNG, max. 5 MB)</span><input type="file" name="job_cv" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" /></label>
+            </div>
+          </fieldset>
+
+          <label class="field field--full"><span data-msg-label>Nachricht</span><textarea name="nachricht" rows="5" maxlength="3000"></textarea></label>
+
+          <!-- Spam-Schutz: Feld für Menschen unsichtbar; Bots füllen es aus -->
+          <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+          <input type="hidden" name="t" value="" />
+
+          <label class="consent"><input type="checkbox" name="datenschutz" value="ja" required /><span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben einverstanden. *</span></label>
+
+          <div class="form__actions">
+            <button type="submit" class="btn btn--dark">Absenden <span aria-hidden="true">→</span></button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <p class="footer__claim">Ci vediamo<br /><em>al Favolosa.</em></p>
+        <div class="footer__contact">
+          <a href="tel:+41788822527" class="footer__big">078 882 25 27</a>
+          <a href="#kontakt" class="btn btn--light">Nachricht schreiben</a>
+        </div>
+      </div>
+      <div class="footer__grid">
+        <div>
+          <h3>Lokale</h3>
+          <ul>
+            <li>Bälliz 60, Thun</li>
+            <li>Mühleplatz 34, Thun</li>
+            <li>Gwattstrasse 68, Gwatt</li>
+            <li>Bahnhof Thun</li>
+            <li>Neue Bahnhofstrasse 2, Münsingen</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Entdecken</h3>
+          <ul>
+            <li><a href="#gelati">Gelati</a></li>
+            <li><a href="#qualitaet">Qualität</a></li>
+            <li><a href="#events">Catering &amp; Events</a></li>
+            <li><a href="#gutschein">Gutschein</a></li>
+            <li><a href="#jobs">Jobs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Folge uns</h3>
+          <ul>
+            <li><a href="https://www.instagram.com/gelateria_la_favolosa/" target="_blank" rel="noopener">Instagram ↗</a></li>
+            <li><a href="https://www.facebook.com/GelateriaLaFavolosa" target="_blank" rel="noopener">Facebook ↗</a></li>
+          </ul>
+        </div>
+        <img class="footer__logo" src="assets/img/logo-claim.png" alt="La Favolosa – Gelatieri per passione" loading="lazy" width="480" height="340" />
+      </div>
+      <div class="footer__bottom">
+        <span>© <span id="year">2026</span> Gelateria La Favolosa, Thun</span>
+        <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/SplitText.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

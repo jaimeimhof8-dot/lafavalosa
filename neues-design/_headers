@@ -1,0 +1,4 @@
+# Nur für die Netlify-Vorschau: Demo darf nicht in Google erscheinen.
+# Auf dem echten Server (Apache) wird diese Datei ignoriert und per .htaccess gesperrt.
+/*
+  X-Robots-Tag: noindex, nofollow
