@@ -448,3 +448,7 @@ mark.todo { background: #FFE58A; color: var(--cocoa); padding: 0 4px; border-rad
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Demo-Hinweis (nur Vorschau mit Demo-Admin) ---------- */
+.demo-pill { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; max-width: calc(100vw - 32px); background: var(--cocoa); color: var(--cream); padding: 10px 16px; border-radius: 99px; font-size: .85rem; box-shadow: var(--shadow); }
+.demo-pill a, .demo-pill button { color: var(--rosa); font: inherit; font-weight: 700; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }

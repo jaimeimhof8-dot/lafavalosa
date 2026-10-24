@@ -11,6 +11,20 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const content = window.FAVOLOSA || {};
 
+  // Vorschau-Hosts ohne PHP (lokal geöffnet, Netlify, GitHub Pages): Der Demo-Admin (admin/index.html)
+  // speichert im Browser (localStorage). Diese Änderungen werden hier über content.js gelegt.
+  const DEMO = location.protocol === "file:" || /\.(netlify\.app|github\.io|vercel\.app)$/.test(location.hostname);
+  let demoEdited = false;
+  if (DEMO) {
+    try {
+      const saved = JSON.parse(localStorage.getItem("favolosa-demo-content") || "null");
+      if (saved && typeof saved === "object") {
+        ["hinweis", "sorten", "jobs", "ausnahmen"].forEach((k) => { if (saved[k] !== undefined) content[k] = saved[k]; });
+        demoEdited = true;
+      }
+    } catch { /* ohne localStorage: Standardinhalte */ }
+  }
+
   const header = $(".header");
   const nav = $("#nav");
   const burger = $("#burger");
@@ -191,8 +205,7 @@
      2. google.php (Live-Daten) ersetzt ihn, sobald es antwortet
      Ohne beides bleiben content.js-Zeiten, und Rezensionen werden nicht gezeigt.
      ========================================================= */
-  // Auf Vorschau-Hosts ohne PHP (lokal geöffnet, Netlify, GitHub Pages) gibt es kein google.php.
-  const DEMO = location.protocol === "file:" || /\.(netlify\.app|github\.io|vercel\.app)$/.test(location.hostname);
+  // Auf Vorschau-Hosts (DEMO, siehe oben) gibt es kein google.php: dort gilt der Snapshot.
 
   const fmtRating = (n) => n.toLocaleString("de-CH", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   const fmtCount = (n) => n.toLocaleString("de-CH").replace(/[’']/g, "’");
@@ -289,6 +302,18 @@
   renderFlavors();
   renderJobs();
   setInterval(updateStatus, 60 * 1000);
+
+  // Demo: Hinweis, dass Änderungen aus dem Demo-Admin angezeigt werden
+  if (demoEdited) {
+    const pill = document.createElement("div");
+    pill.className = "demo-pill";
+    pill.innerHTML = '<span>Demo-Ansicht mit deinen Änderungen</span> <a href="admin/">Zum Admin</a> <button type="button">Zurücksetzen</button>';
+    $("button", pill).addEventListener("click", () => {
+      try { localStorage.removeItem("favolosa-demo-content"); localStorage.removeItem("favolosa-demo-history"); } catch { /* egal */ }
+      location.reload();
+    });
+    document.body.appendChild(pill);
+  }
 
   if (window.FAVOLOSA_GOOGLE) applyGoogle(window.FAVOLOSA_GOOGLE);
   if (!DEMO) {

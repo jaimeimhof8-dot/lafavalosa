@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Inhalte bearbeiten (Demo) – La Favolosa</title>
+  <link rel="icon" type="image/png" href="../assets/img/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- DEMO-Version des Admins für Vorschau-Hosts ohne PHP (GitHub Pages).
+       Im Live-Betrieb auf dem PHP-Hosting wird stattdessen index.php verwendet. -->
+  <div class="demo-banner">
+    <p><strong>Demo:</strong> So ändert dein Team die Website selbst. Änderungen werden nur in <em>deinem Browser</em> gespeichert und sind für niemand sonst sichtbar. Probiere es aus: Sorte ändern, speichern, dann «Website ansehen».</p>
+    <button type="button" class="btn btn--ghost" id="demo-reset">Demo zurücksetzen</button>
+  </div>
+
+  <header class="top">
+    <img src="../assets/img/logo.png" alt="La Favolosa" width="120" height="69" />
+    <div class="top__actions">
+      <a class="btn btn--ghost" href="../" target="_blank" rel="noopener">Website ansehen ↗</a>
+      <button type="button" class="btn btn--ghost" id="undo" disabled>Letzte Änderung rückgängig</button>
+    </div>
+  </header>
+
+  <main class="editor">
+    <h1>Inhalte der Website</h1>
+    <noscript><p class="error">Für diese Seite wird JavaScript benötigt.</p></noscript>
+
+    <section class="card" id="sec-banner">
+      <h2>Hinweis-Banner</h2>
+      <p class="hint">Der Streifen ganz oben auf der Website, z.B. «Heute wegen Regen ab 16:00 geschlossen».</p>
+      <label class="switch"><input type="checkbox" id="banner-aktiv" /> <span>Banner anzeigen</span></label>
+      <label class="field">Text <small id="banner-count"></small>
+        <input type="text" id="banner-text" maxlength="160" placeholder="z.B. Heute wegen Regen alle Lokale ab 16:00 geschlossen." />
+      </label>
+      <label class="field">Anzeigen bis (letzter Tag)
+        <input type="date" id="banner-bis" />
+      </label>
+    </section>
+
+    <section class="card" id="sec-sorten">
+      <h2>Sorten</h2>
+      <p class="hint">Diese Sorten erscheinen auf der Startseite. Namen kannst du direkt anklicken und ändern. Mit ↑ ↓ ordnest du um, mit × löschst du.</p>
+      <h3>Milchsorten</h3>
+      <div class="chips" id="list-milch"></div>
+      <h3>Sorbets</h3>
+      <div class="chips" id="list-sorbet"></div>
+    </section>
+
+    <section class="card" id="sec-ausnahmen">
+      <h2>Ausnahmetage</h2>
+      <p class="hint">Feiertage, Wetter oder Privatanlass: An diesen Tagen gilt statt der normalen Öffnungszeit, was du hier einträgst. Vergangene Tage werden beim Speichern automatisch entfernt.</p>
+      <div id="list-ausnahmen"></div>
+      <button type="button" class="btn btn--ghost" id="add-ausnahme">+ Ausnahmetag hinzufügen</button>
+    </section>
+
+    <section class="card" id="sec-jobs">
+      <h2>Offene Stellen</h2>
+      <p class="hint">Ist die Liste leer, steht auf der Website «Aktuell keine offenen Stellen – Spontanbewerbungen sind willkommen».</p>
+      <label class="field">Saison (z.B. 2027)
+        <input type="text" id="jobs-saison" maxlength="20" />
+      </label>
+      <h3>Stellen</h3>
+      <div class="chips" id="list-stellen"></div>
+    </section>
+  </main>
+
+  <footer class="bar">
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+    <button type="button" class="btn" id="save">Speichern</button>
+  </footer>
+
+  <script src="../content.js"></script>
+  <script src="demo.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    document.getElementById("demo-reset").addEventListener("click", function () {
+      if (!confirm("Alle Demo-Änderungen löschen und den Ausgangszustand wiederherstellen?")) return;
+      window.AdminDemo.reset();
+      location.reload();
+    });
+  </script>
+</body>
+</html>

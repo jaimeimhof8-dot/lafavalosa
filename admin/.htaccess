@@ -1,0 +1,8 @@
+DirectoryIndex index.php
+# Die Demo-Seite (index.html) ist nur für Vorschau-Hosts ohne PHP (GitHub Pages) gedacht
+<Files "index.html">
+  Require all denied
+</Files>
+<Files "demo.js">
+  Require all denied
+</Files>

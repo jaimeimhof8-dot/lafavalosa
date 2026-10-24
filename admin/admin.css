@@ -96,3 +96,9 @@ input:disabled { opacity: .5; }
   body { padding-bottom: 150px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Demo-Hinweis (admin/index.html, nur Vorschau ohne Server) */
+.demo-banner { background: var(--cocoa); color: var(--cream); padding: 12px clamp(16px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 24px; font-size: .92rem; }
+.demo-banner p { margin: 0; max-width: 78ch; }
+.demo-banner .btn--ghost { color: var(--cream); border-color: var(--cream); padding: 8px 16px; font-size: .85rem; }
+.demo-banner .btn--ghost:hover:not(:disabled) { background: rgba(251, 245, 238, .15); border-color: var(--cream); }

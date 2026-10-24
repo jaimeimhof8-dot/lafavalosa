@@ -4,8 +4,10 @@
 
 (() => {
   const $ = (s, root = document) => root.querySelector(s);
-  const initial = JSON.parse($("#initial").textContent);
-  const csrf = $('meta[name="csrf"]').content;
+  // Demo (admin/index.html, ohne Server): demo.js liefert Daten und "speichert" im Browser
+  const demo = window.AdminDemo;
+  const initial = demo ? demo.initial() : JSON.parse($("#initial").textContent);
+  const csrf = demo ? "" : $('meta[name="csrf"]').content;
   const LOKALE = initial.lokale;
 
   let state = clone(initial.data);
@@ -184,6 +186,7 @@
 
   /* ---------- Server ---------- */
   async function post(body) {
+    if (demo) return demo.post(body);
     const res = await fetch("index.php", {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-CSRF-Token": csrf },

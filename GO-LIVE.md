@@ -47,6 +47,9 @@ Der Kunde ändert Sorten, Hinweis-Banner, Ausnahmetage und Jobs selbst unter `ht
 - **Achtung beim erneuten Hochladen:** `content.js` und der Ordner `data/` enthalten die Änderungen des Kunden. Beim Deployment per FTP/Git diese beiden **nicht überschreiben**. Backups (letzte 20) liegen in `data/backup/`.
 - Der Admin läuft nur mit PHP (nicht auf GitHub Pages/Netlify).
 
+## Demo für den Kunden (GitHub Pages)
+Auf GitHub Pages läuft kein PHP. Dort zeigt `https://<benutzer>.github.io/lafavalosa/admin/` eine **Demo des Admins** (`admin/index.html`, `admin/demo.js`): Änderungen werden nur im Browser des Besuchers gespeichert (localStorage) und erscheinen auf der Demo-Website; ein Hinweis unten links erlaubt das Zurücksetzen. Auf dem PHP-Hosting ist `admin/index.html` per `admin/.htaccess` gesperrt, dort gilt der echte Admin (`admin/index.php`).
+
 ## Inhalte pflegen (für dich bzw. den Kunden)
 Der Kunde nutzt den Admin (siehe oben). Die Datei `content.js` wird dabei automatisch neu geschrieben und soll dann **nicht mehr von Hand** geändert werden – Änderungen gehören in `data/content.json` (bzw. in den Admin).
 Alles Wichtige steht in **`content.js`** – mit Anleitung oben in der Datei:
