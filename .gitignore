@@ -1,0 +1,6 @@
+# Laufzeit-Dateien auf dem Server (nicht ins Repo)
+cache/
+data/backup/*
+!data/backup/.gitkeep
+data/login-attempts.json
+*.tmp*

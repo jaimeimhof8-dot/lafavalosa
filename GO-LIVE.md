@@ -38,7 +38,17 @@ Die Website liest Sterne, Rezensionen und Öffnungszeiten aus dem Google-Unterne
 - [ ] Instagram-/Facebook-Bio: Link prüfen
 - [ ] Lighthouse-Test (Chrome DevTools): Ziel ≥ 90 in allen Kategorien
 
+## Admin für den Kunden (/admin/)
+Der Kunde ändert Sorten, Hinweis-Banner, Ausnahmetage und Jobs selbst unter `https://www.favolosa.ch/admin/`.
+- [ ] Passwort festlegen: `/admin/` aufrufen (solange `admin → password_hash` in `config.php` leer ist), Passwort wählen, den angezeigten Code in `config.php` bei `password_hash` einsetzen
+- [ ] Schreibrechte: `content.js` und der Ordner `data/` müssen für PHP beschreibbar sein (meist Standard; sonst im Hoster-Panel auf 644/755 bzw. 664/775 stellen). Der Admin zeigt eine Warnung, wenn das fehlt.
+- [ ] Test: einloggen, eine Sorte hinzufügen, speichern → Startseite zeigt sie sofort
+- [ ] `KUNDEN-ANLEITUNG.md` dem Kunden geben (als PDF oder ausgedruckt)
+- **Achtung beim erneuten Hochladen:** `content.js` und der Ordner `data/` enthalten die Änderungen des Kunden. Beim Deployment per FTP/Git diese beiden **nicht überschreiben**. Backups (letzte 20) liegen in `data/backup/`.
+- Der Admin läuft nur mit PHP (nicht auf GitHub Pages/Netlify).
+
 ## Inhalte pflegen (für dich bzw. den Kunden)
+Der Kunde nutzt den Admin (siehe oben). Die Datei `content.js` wird dabei automatisch neu geschrieben und soll dann **nicht mehr von Hand** geändert werden – Änderungen gehören in `data/content.json` (bzw. in den Admin).
 Alles Wichtige steht in **`content.js`** – mit Anleitung oben in der Datei:
 - **Hinweis-Banner** (z.B. «Heute wegen Regen ab 16 Uhr zu»): `hinweis.aktiv: true`, Text und Enddatum setzen
 - **Einzelne Tage** (Feiertage, Wetter, Privatanlass): Eintrag in `ausnahmen`

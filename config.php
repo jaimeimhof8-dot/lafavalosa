@@ -22,6 +22,14 @@ return [
     // Anhänge (nur Bewerbung)
     'max_upload_mb' => 5,
 
+    // Admin-Bereich /admin/ (Inhalte bearbeiten) – siehe GO-LIVE.md
+    'admin' => [
+        // Passwort-Hash. Erzeugen: /admin/ aufrufen, solange das Feld leer ist, und den Code hier einsetzen.
+        'password_hash' => '',
+        // Automatisch abmelden nach so vielen Minuten Inaktivität
+        'session_minutes' => 60,
+    ],
+
     // Google-Daten (Öffnungszeiten & Bewertungen) – siehe google.php und GO-LIVE.md
     'google' => [
         // Places-API-Schlüssel (Google Cloud Console, "Places API (New)" aktivieren,

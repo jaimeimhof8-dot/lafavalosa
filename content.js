@@ -4,6 +4,11 @@
    Hier können Öffnungszeiten, Ausnahmen, Sorten und Jobs
    geändert werden, ohne den Rest der Website anzufassen.
 
+   ACHTUNG: Mit dem Admin (/admin/) wird diese Datei aus
+   data/content.json automatisch neu geschrieben. Dauerhafte
+   Änderungen daher in data/content.json machen (gleiche Struktur),
+   sonst gehen sie beim nächsten Speichern im Admin verloren.
+
    Regeln:
    - Texte immer in "Anführungszeichen".
    - Zeiten im Format "HH:MM", z.B. "09:30".
