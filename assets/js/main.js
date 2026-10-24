@@ -42,23 +42,33 @@
     };
   }
   const toMin = (s) => { const [h, m] = s.split(":").map(Number); return h * 60 + m; };
+  // "24:00" (Mitternacht) und Zeiten nach Mitternacht ("25:30") werden als 00:00 bzw. 01:30 angezeigt
+  const fmt = (s) => { const [h, m] = s.split(":").map(Number); return `${String(h % 24).padStart(2, "0")}:${String(m).padStart(2, "0")}`; };
+  // Ein Tag ist ["12:30","18:00"] oder – mit Mittagspause – [["09:00","12:00"],["14:00","18:00"]]
+  const ranges = (h) => (!h ? [] : Array.isArray(h[0]) ? h : [h]);
+  const hoursText = (h) => ranges(h).map((r) => r.map(fmt).join(" – ")).join(" · ");
   const monthYear = (iso) => new Intl.DateTimeFormat("de-CH", { month: "long", year: "numeric" }).format(new Date(iso + "T12:00:00"));
 
   /* =========================================================
      Öffnungszeiten & Status
+     Quelle: Google-Unternehmensprofil (siehe "Google-Daten" unten),
+     content.js dient als Notfall-Wert und für manuelle Ausnahmen.
      ========================================================= */
   function today(id, loc, now) {
     if (loc.pauseBis && now.date < loc.pauseBis) return { pause: true, text: loc.pauseText || "Saisonpause" };
     const exc = (content.ausnahmen || []).find((a) => a.datum === now.date && (a.lokal === id || a.lokal === "alle"));
-    if (exc) return { hours: exc.zeiten, text: exc.text, exception: true };
-    return { hours: (loc.zeiten || {})[now.dayKey] || null };
+    if (exc) return { hours: ranges(exc.zeiten), text: exc.text, exception: true };
+    const g = loc.google;
+    if (g && g.status === "CLOSED_TEMPORARILY") return { pause: true, text: "Vorübergehend geschlossen" };
+    if (g && g.status === "CLOSED_PERMANENTLY") return { pause: true, text: "Geschlossen" };
+    return { hours: ranges((loc.zeiten || {})[now.dayKey]) };
   }
 
   // Aufeinanderfolgende Tage mit gleichen Zeiten zusammenfassen: "Mo–Sa 12:30 – 18:00"
   function groupHours(zeiten) {
     const groups = [];
     WEEK.forEach((d) => {
-      const h = zeiten[d] ? zeiten[d].join(" – ") : "geschlossen";
+      const h = zeiten[d] && zeiten[d].length ? hoursText(zeiten[d]) : "geschlossen";
       const last = groups[groups.length - 1];
       if (last && last.h === h) last.to = d; else groups.push({ from: d, to: d, h });
     });
@@ -72,9 +82,13 @@
       const loc = lokale[card.dataset.loc];
       const dl = $(".loc__hours", card);
       if (!loc || !dl) return;
-      const rows = loc.pauseBis && now.date < loc.pauseBis
-        ? [["Wieder offen", `ab ${monthYear(loc.pauseBis)}`]]
-        : groupHours(loc.zeiten || {});
+      const g = loc.google;
+      let rows;
+      if (loc.pauseBis && now.date < loc.pauseBis) rows = [["Wieder offen", `ab ${monthYear(loc.pauseBis)}`]];
+      else if (g && g.status === "CLOSED_TEMPORARILY") rows = [["Aktuell", "Vorübergehend geschlossen"]];
+      else if (g && g.status === "CLOSED_PERMANENTLY") rows = [["Aktuell", "Dauerhaft geschlossen"]];
+      else if (loc.zeiten) rows = groupHours(loc.zeiten);
+      else return;
       dl.innerHTML = rows.map(([dt, dd]) => `<dt>${dt}</dt><dd>${dd}</dd>`).join("");
     });
   }
@@ -96,19 +110,23 @@
       if (t.pause) {
         badge.textContent = t.text;
         badge.classList.add("status--closed");
-      } else if (!t.hours) {
+      } else if (!t.hours.length) {
         badge.textContent = t.exception ? (t.text ? `Heute zu · ${t.text}` : "Heute geschlossen") : "Heute geschlossen";
         badge.classList.add(t.exception ? "status--warn" : "status--closed");
-      } else if (now.minutes >= toMin(t.hours[0]) && now.minutes < toMin(t.hours[1])) {
-        badge.textContent = `Offen bis ${t.hours[1]}`;
-        badge.classList.add(t.exception ? "status--warn" : "status--open");
-        openCount++;
-      } else if (now.minutes < toMin(t.hours[0])) {
-        badge.textContent = `Ab ${t.hours[0]}`;
-        badge.classList.add(t.exception ? "status--warn" : "status--closed");
       } else {
-        badge.textContent = "Geschlossen";
-        badge.classList.add("status--closed");
+        const current = t.hours.find(([from, to]) => now.minutes >= toMin(from) && now.minutes < toMin(to));
+        const next = t.hours.find(([from]) => now.minutes < toMin(from));
+        if (current) {
+          badge.textContent = `Offen bis ${fmt(current[1])}`;
+          badge.classList.add(t.exception ? "status--warn" : "status--open");
+          openCount++;
+        } else if (next) {
+          badge.textContent = `Ab ${fmt(next[0])}`;
+          badge.classList.add(t.exception ? "status--warn" : "status--closed");
+        } else {
+          badge.textContent = "Geschlossen";
+          badge.classList.add("status--closed");
+        }
       }
       if (t.exception && t.text) badge.title = t.text;
     });
@@ -167,6 +185,104 @@
     });
   }
 
+  /* =========================================================
+     Google-Daten: Öffnungszeiten, Sterne, Rezensionen
+     1. google-snapshot.js (echter Stand von Google Maps) wird sofort verwendet
+     2. google.php (Live-Daten) ersetzt ihn, sobald es antwortet
+     Ohne beides bleiben content.js-Zeiten, und Rezensionen werden nicht gezeigt.
+     ========================================================= */
+  // Auf Vorschau-Hosts ohne PHP (lokal geöffnet, Netlify, GitHub Pages) gibt es kein google.php.
+  const DEMO = location.protocol === "file:" || /\.(netlify\.app|github\.io|vercel\.app)$/.test(location.hostname);
+
+  const fmtRating = (n) => n.toLocaleString("de-CH", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const fmtCount = (n) => n.toLocaleString("de-CH").replace(/[’']/g, "’");
+  const MAPS_FALLBACK = "https://www.google.com/search?q=Gelateria+La+Favolosa+Thun";
+  const LOC_NAME = { baelliz: "Bälliz", muehleplatz: "Mühleplatz", gwatt: "Gwatt", bahnhof: "Bahnhof", muensingen: "Münsingen" };
+
+  // Manuelle Ausnahmen aus content.js gewinnen vor den Google-Sonderzeiten.
+  const manualExceptions = content.ausnahmen || [];
+
+  function applyGoogle(data) {
+    const lokale = content.lokale || (content.lokale = {});
+    const exceptions = [];
+    Object.entries(data.lokale || {}).forEach(([id, g]) => {
+      const loc = lokale[id] || (lokale[id] = {});
+      loc.google = g;
+      if (g.zeiten) loc.zeiten = g.zeiten;
+      (g.ausnahmen || []).forEach((a) => exceptions.push({ ...a, lokal: id }));
+    });
+    content.ausnahmen = manualExceptions.concat(exceptions);
+    content.googleData = data;
+
+    renderHours();
+    updateStatus();
+    renderRatings(data);
+    renderVoices(data);
+  }
+
+  function renderRatings(data) {
+    $$("[data-loc]").forEach((card) => {
+      const g = (data.lokale || {})[card.dataset.loc];
+      const a = $(".loc__rating", card);
+      if (!g || !a || !g.rating) return;
+      a.innerHTML = `<span class="stars" aria-hidden="true">★</span> <strong>${fmtRating(g.rating)}</strong> · ${fmtCount(g.count)} Google-Bewertungen`;
+      a.href = g.maps || MAPS_FALLBACK;
+      a.hidden = false;
+    });
+  }
+
+  function renderVoices(data) {
+    const grid = $("#voices");
+    const summary = $("#voicesSummary");
+    const rated = Object.values(data.lokale || {}).filter((g) => g.rating && g.count);
+    const total = rated.reduce((n, g) => n + g.count, 0);
+
+    if (summary && total) {
+      const avg = rated.reduce((n, g) => n + g.rating * g.count, 0) / total;
+      const stand = data.quelle === "snapshot"
+        ? `Stand ${new Intl.DateTimeFormat("de-CH", { dateStyle: "medium" }).format(new Date(data.stand + "T12:00:00"))}`
+        : "live von Google";
+      summary.innerHTML = `<span class="voices__score">${fmtRating(avg)}</span>
+        <span class="stars" role="img" aria-label="${fmtRating(avg)} von 5 Sternen">${"★".repeat(Math.round(avg))}</span>
+        <span class="voices__meta"><strong>${fmtCount(total)} Bewertungen</strong> auf Google · ${stand}</span>`;
+      summary.hidden = false;
+    }
+
+    if (!grid) return;
+    // Nur echte Rezensionen mit Text; abwechselnd aus den Lokalen, damit nicht eins dominiert
+    const byLoc = {};
+    (data.bewertungen || [])
+      .filter((r) => r.sterne >= 4 && r.text && r.text.length >= 40 && r.autor)
+      .forEach((r) => { (byLoc[r.lokal] = byLoc[r.lokal] || []).push(r); });
+    const picked = [];
+    for (let i = 0; picked.length < 6; i++) {
+      const round = Object.values(byLoc).map((l) => l[i]).filter(Boolean);
+      if (!round.length) break;
+      picked.push(...round);
+    }
+
+    $$(".voice[data-google]", grid).forEach((n) => n.remove());
+    const cta = $(".voice--cta", grid);
+    picked.slice(0, 6).forEach((r, i) => {
+      const text = r.text.length > 300 ? r.text.slice(0, 300).replace(/\s+\S*$/, "") + " …" : r.text;
+      const el = document.createElement("figure");
+      el.className = "voice" + (i === 1 ? " voice--pink" : "");
+      el.dataset.google = "";
+      const name = r.autorUri
+        ? `<a href="${esc(r.autorUri)}" target="_blank" rel="noopener">${esc(r.autor)}</a>` : esc(r.autor);
+      el.innerHTML = `<div class="stars" role="img" aria-label="${r.sterne} von 5 Sternen">${"★".repeat(r.sterne)}</div>
+        <blockquote lang="${esc(r.sprache || "de")}">«${esc(text)}»</blockquote>
+        <figcaption><strong>${name}</strong><span>${esc(r.zeit)}${LOC_NAME[r.lokal] ? ` · ${LOC_NAME[r.lokal]}` : ""} · <a href="${esc(r.uri || (data.lokale[r.lokal] || {}).maps || MAPS_FALLBACK)}" target="_blank" rel="noopener">auf Google ansehen</a></span></figcaption>`;
+      grid.insertBefore(el, cta);
+    });
+
+    // "Bewerte uns": direkt zum Bewertungsformular des Hauptlokals (Gwatt), wenn Google die Place ID liefert
+    const main = (data.lokale || {}).gwatt;
+    if (cta && main) {
+      cta.href = main.placeId ? `https://search.google.com/local/writereview?placeid=${encodeURIComponent(main.placeId)}` : (main.maps || cta.href);
+    }
+  }
+
   renderNotice();
   renderHours();
   updateStatus();
@@ -174,14 +290,20 @@
   renderJobs();
   setInterval(updateStatus, 60 * 1000);
 
+  if (window.FAVOLOSA_GOOGLE) applyGoogle(window.FAVOLOSA_GOOGLE);
+  if (!DEMO) {
+    fetch("google.php", { headers: { Accept: "application/json" } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (data && data.ok && data.lokale) applyGoogle(data); })
+      .catch(() => {}); // bleibt beim Snapshot
+  }
+
   /* =========================================================
      Formular
      ========================================================= */
   const form = $("#form");
   const loadedAt = Date.now();
-  // Auf Vorschau-Hosts ohne PHP (lokal geöffnet, Netlify, GitHub Pages) wird der Versand simuliert.
-  const DEMO = location.protocol === "file:" || /\.(netlify\.app|github\.io|vercel\.app)$/.test(location.hostname);
-
+  // DEMO (siehe oben): Der Versand wird auf Vorschau-Hosts ohne PHP simuliert.
   function setTopic(topic) {
     if (!form) return;
     const radio = $(`input[name="topic"][value="${topic}"]`, form);

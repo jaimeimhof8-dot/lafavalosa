@@ -230,6 +230,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .loc__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .loc h3 { font-size: 2rem; }
 .loc__tag { font-family: var(--ff-display); font-style: italic; color: var(--fragola); margin: 6px 0 14px; }
+.loc__rating { display: inline-flex; align-items: center; gap: 6px; margin: -6px 0 12px; font-size: .88rem; color: var(--cocoa-2); text-decoration: none; }
+.loc__rating[hidden] { display: none; }
+.loc__rating:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+.loc__rating strong { color: var(--cocoa); }
 .loc__desc { color: var(--cocoa-2); font-size: .95rem; }
 .loc__hours { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: auto 0 18px; padding-top: 12px; font-size: .95rem; }
 .loc__hours dt { font-weight: 600; }
@@ -266,10 +270,20 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Voices ---------- */
 .voices { background: var(--menta); }
-.voices__grid { display: grid; grid-template-columns: 1fr 1fr .7fr; gap: 20px; }
+.voices__summary { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 16px; margin: -8px 0 32px; }
+.voices__score { font-family: var(--ff-display); font-size: clamp(2.6rem, 5vw, 3.8rem); line-height: 1; }
+.voices__summary .stars { font-size: 1.3rem; }
+.voices__meta { color: var(--cocoa-2); }
+.voices__note { margin: 24px 0 0; font-size: .85rem; color: var(--cocoa-2); }
+.voices__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .voice { margin: 0; background: var(--white); border-radius: var(--radius); padding: clamp(28px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 20px; }
-.voice blockquote { margin: 0; font-family: var(--ff-display); font-size: clamp(1.2rem, 1.8vw, 1.5rem); line-height: 1.35; flex: 1; }
-.voice figcaption { font-weight: 600; }
+.voice blockquote { margin: 0; font-family: var(--ff-display); font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 1.4; flex: 1; }
+.voice figcaption { display: flex; flex-direction: column; gap: 2px; }
+.voice figcaption span { font-size: .85rem; font-weight: 400; color: var(--cocoa-2); }
+.voice figcaption a { color: inherit; text-underline-offset: 3px; }
+.voice[data-google] { animation: voice-in .7s var(--ease) both; }
+@keyframes voice-in { from { opacity: 0; transform: translateY(24px); } }
+@media (prefers-reduced-motion: reduce) { .voice[data-google] { animation: none; } }
 .voice--pink { background: var(--rosa-2); }
 .stars { color: #E7A33E; letter-spacing: 3px; }
 .voice--cta { background: var(--cocoa); color: var(--cream); text-decoration: none; justify-content: space-between; transition: transform .5s var(--ease); }

@@ -4,9 +4,20 @@
 - [ ] `config.php`: `to` = echte Empfänger-Adresse, `from` = Adresse auf favolosa.ch (z.B. website@favolosa.ch)
 - [ ] `impressum.html`: Firmenname, verantwortliche Person, UID/MWST, E-Mail, Fotograf/in, dein Name als Webdesigner
 - [ ] `datenschutz.html`: Firmenname, E-Mail, Hosting-Anbieter, Log-Aufbewahrung, Bewerbungs-Löschfrist, Datum
-- [ ] Bewertungen (Sarah R., Simona): Einverständnis eingeholt oder durch echte Google-Bewertungen ersetzt
-- [ ] `content.js`: aktuelle Öffnungszeiten, Jobs, Sorten geprüft
-- [ ] JSON-LD in `index.html` (`<script type="application/ld+json">`): Öffnungszeiten stimmen mit `content.js` überein
+- [x] Bewertungen: kommen jetzt direkt von Google (siehe Abschnitt 1b) – keine Texte mehr von Hand
+- [ ] `content.js`: Jobs und Sorten geprüft (Öffnungszeiten kommen von Google, `content.js` ist nur Notfall-Wert)
+- [ ] JSON-LD in `index.html` (`<script type="application/ld+json">`): Öffnungszeiten stimmen mit Google Maps überein
+- [ ] Rechtliche Adresse in `impressum.html`/`datenschutz.html` (steht noch «Bälliz 60») beim Kunden bestätigen
+
+## 1b. Google-Anbindung (Öffnungszeiten & Bewertungen live)
+Die Website liest Sterne, Rezensionen und Öffnungszeiten aus dem Google-Unternehmensprofil (`google.php`, Places API). Ohne Schlüssel zeigt sie den echten Stand vom 24.10.2026 aus `google-snapshot.js`.
+- [ ] [Google Cloud Console](https://console.cloud.google.com): Projekt anlegen (auf den Namen des Kunden), Rechnungskonto hinterlegen (Google gibt ein monatliches Gratis-Kontingent; bei 6 h Cache bleiben 5 Lokale weit darunter)
+- [ ] «Places API (New)» aktivieren, API-Schlüssel erstellen
+- [ ] Schlüssel einschränken: Anwendungseinschränkung = IP-Adresse des Servers, API-Einschränkung = nur Places API (New)
+- [ ] Schlüssel in `config.php` unter `google` → `api_key` eintragen (Place IDs werden automatisch gefunden)
+- [ ] Test: `https://www.favolosa.ch/google.php` im Browser öffnen → JSON mit `"quelle":"google-places"`. Der Ordner `cache/` muss beschreibbar sein.
+- [ ] Öffnungszeiten im Google-Unternehmensprofil (business.google.com) pflegen – sie erscheinen nach spätestens 6 h auf der Website. Bälliz und Münsingen stehen bei Google aktuell auf «vorübergehend geschlossen» und werden so angezeigt.
+- Die API liefert pro Lokal die 5 «relevantesten» Rezensionen; Sterne und Anzahl umfassen alle.
 
 ## 2. Hosting (empfohlen: Schweizer Anbieter mit PHP ≥ 8.1, z.B. Infomaniak oder Hostpoint)
 - [ ] Hosting auf den Namen des Kunden eröffnen (Kunde ist Vertragspartner, du hast Zugriff)

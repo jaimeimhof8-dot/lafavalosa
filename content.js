@@ -7,7 +7,7 @@
    Regeln:
    - Texte immer in "Anführungszeichen".
    - Zeiten im Format "HH:MM", z.B. "09:30".
-   - Ein geschlossener Tag: null  (ohne Anführungszeichen)
+   - Ein geschlossener Tag: null  (ohne Anführungszeichen); "24:00" = Mitternacht.
    - Datum im Format "JJJJ-MM-TT", z.B. "2026-12-24".
    - Nach jedem Eintrag in einer Liste ein Komma – ausser beim letzten.
    ========================================================= */
@@ -22,13 +22,16 @@ window.FAVOLOSA = {
     bis: "2026-10-13",
   },
 
-  /* Reguläre Öffnungszeiten pro Lokal. */
+  /* Reguläre Öffnungszeiten pro Lokal – nur NOTFALL-WERTE.
+     Angezeigt werden die Zeiten aus dem Google-Unternehmensprofil (google.php bzw. google-snapshot.js).
+     Diese Liste gilt nur für Lokale, bei denen Google keine Zeiten hat, oder wenn Google nicht erreichbar ist.
+     Zeiten also am besten direkt in Google Maps pflegen (business.google.com). */
   lokale: {
     baelliz: {
       zeiten: { mo: ["12:30", "17:30"], di: ["12:30", "17:30"], mi: ["12:30", "17:30"], do: ["12:30", "17:30"], fr: ["12:30", "17:30"], sa: ["12:30", "17:30"], so: ["12:30", "17:30"] },
     },
     muehleplatz: {
-      zeiten: { mo: ["09:00", "22:00"], di: ["09:00", "22:00"], mi: ["09:00", "22:00"], do: ["09:00", "22:00"], fr: ["09:00", "22:00"], sa: ["09:00", "22:00"], so: ["09:00", "22:00"] },
+      zeiten: { mo: ["09:00", "23:00"], di: ["09:00", "23:00"], mi: ["09:00", "23:00"], do: ["09:00", "23:00"], fr: ["09:00", "24:00"], sa: ["09:00", "24:00"], so: ["09:00", "23:00"] },
     },
     gwatt: {
       zeiten: { mo: ["12:30", "18:00"], di: ["12:30", "18:00"], mi: ["12:30", "18:00"], do: ["12:30", "18:00"], fr: ["12:30", "18:00"], sa: ["12:30", "18:00"], so: ["09:30", "18:00"] },

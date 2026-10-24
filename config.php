@@ -21,4 +21,23 @@ return [
 
     // Anhänge (nur Bewerbung)
     'max_upload_mb' => 5,
+
+    // Google-Daten (Öffnungszeiten & Bewertungen) – siehe google.php und GO-LIVE.md
+    'google' => [
+        // Places-API-Schlüssel (Google Cloud Console, "Places API (New)" aktivieren,
+        // Schlüssel auf die Server-IP und "Places API (New)" beschränken)
+        'api_key' => 'BITTE-ERSETZEN',
+
+        // So viele Stunden werden die Google-Daten zwischengespeichert
+        'cache_hours' => 6,
+
+        // Lokale. place_id leer lassen: wird per Suchtext automatisch gefunden.
+        'places' => [
+            'baelliz'     => ['place_id' => '', 'query' => 'Gelateria La Favolosa Bälliz 60 3600 Thun'],
+            'muehleplatz' => ['place_id' => '', 'query' => 'Gelateria Creperie Bar La Favolosa Mühleplatz 34 3600 Thun'],
+            'gwatt'       => ['place_id' => '', 'query' => 'La Favolosa Gwattstrasse 68 3645 Gwatt'],
+            'bahnhof'     => ['place_id' => '', 'query' => 'Gelateria La Favolosa SBB Seestrasse 2 3600 Thun'],
+            'muensingen'  => ['place_id' => '', 'query' => 'Gelateria La Favolosa Münsingen Neue Bahnhofstrasse 2'],
+        ],
+    ],
 ];
