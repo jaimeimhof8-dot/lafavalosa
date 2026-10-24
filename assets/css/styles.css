@@ -57,7 +57,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* ---------- Typo helpers ---------- */
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
-  font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  font-size: .8rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
   color: var(--cocoa-2); margin-bottom: 20px;
 }
 .eyebrow::before { content: ""; width: 28px; height: 1.5px; background: currentColor; opacity: .6; }
@@ -218,6 +218,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Lokale ---------- */
 .locations { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.locations > *, .voices__grid > * { min-width: 0; }
 .loc {
   background: var(--white); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column;
   border: 1px solid rgba(58,42,34,.08); transition: transform .5s var(--ease), box-shadow .5s var(--ease);
@@ -227,7 +228,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .loc--feature img { flex: 1; min-height: 240px; object-fit: cover; width: 100%; }
 .loc--feature .loc__body { flex: none; }
 .loc__body { padding: 28px; display: flex; flex-direction: column; flex: 1; }
-.loc__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.loc__head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
 .loc h3 { font-size: 2rem; }
 .loc__tag { font-family: var(--ff-display); font-style: italic; color: var(--fragola); margin: 6px 0 14px; }
 .loc__rating { display: inline-flex; align-items: center; gap: 6px; margin: -6px 0 12px; font-size: .88rem; color: var(--cocoa-2); text-decoration: none; }
@@ -242,7 +243,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .loc__map:hover { color: var(--fragola); }
 .loc--paused { background: transparent; border-style: dashed; }
 .loc--paused .loc__desc { margin-bottom: auto; padding-bottom: 18px; }
-.status { flex: none; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border-radius: 99px; background: var(--cream-2); color: var(--cocoa-2); }
+.status { flex: none; font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border-radius: 99px; background: var(--cream-2); color: var(--cocoa-2); }
 .status--open { background: #DDF0E2; color: #2F7A4A; }
 .status--closed { background: var(--cream-2); color: var(--cocoa-2); }
 
@@ -438,9 +439,9 @@ mark.todo { background: #FFE58A; color: var(--cocoa); padding: 0 4px; border-rad
   .voice--cta { flex-direction: column; align-items: flex-start; }
   .form__grid { grid-template-columns: 1fr; }
   .hero__facts { gap: 18px; }
-  .hero__facts span { font-size: .78rem; }
+  .hero__facts span { font-size: .85rem; }
   .coolbox__stats { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-  .coolbox__stats span { font-size: .78rem; }
+  .coolbox__stats span { font-size: .85rem; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .quote-break { min-height: min(75vh, 640px); }
 }
@@ -452,3 +453,41 @@ mark.todo { background: #FFE58A; color: var(--cocoa); padding: 0 4px; border-rad
 /* ---------- Demo-Hinweis (nur Vorschau mit Demo-Admin) ---------- */
 .demo-pill { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; max-width: calc(100vw - 32px); background: var(--cocoa); color: var(--cream); padding: 10px 16px; border-radius: 99px; font-size: .85rem; box-shadow: var(--shadow); }
 .demo-pill a, .demo-pill button { color: var(--rosa); font: inherit; font-weight: 700; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Handy: Tippflächen mindestens 44 px, Bewertungen zum Wischen ---------- */
+.loc__map { display: flex; align-items: center; min-height: 52px; padding-block: 12px 0; }
+.loc__rating { min-height: 44px; margin: -10px 0 4px; }
+.loc__hours[hidden] { display: none; }
+.pill span { padding: 13px 20px; }
+.footer li { margin-bottom: 0; }
+.footer li a { display: inline-block; padding: 9px 0; }
+.footer__bottom a { display: inline-block; padding: 12px 4px; }
+.contact__direct a { display: inline-block; padding: 8px 0; }
+.voice figcaption span a { display: inline-flex; align-items: center; min-height: 44px; }
+.nav .btn { min-height: 48px; }
+
+@media (max-width: 860px) {
+  .voices__grid {
+    display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin-inline: calc(var(--pad) * -1); padding: 4px var(--pad) 20px; scroll-padding-inline: var(--pad);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .voices__grid::-webkit-scrollbar { display: none; }
+  .voices__grid > .voice { flex: 0 0 min(84%, 360px); scroll-snap-align: start; }
+  .voices__grid > .voice--cta { min-height: 220px; align-self: center; }
+  .voices__note { margin-top: 4px; }
+}
+
+/* Sehr schmale Geräte (z.B. 320 px) */
+@media (max-width: 360px) {
+  .hero__facts { gap: 12px; }
+  .hero__facts strong { font-size: 1.7rem; }
+  .btn { padding-inline: 20px; }
+}
+
+/* Tablet: Mühleplatz-Karte (mit Foto) zuerst über die volle Breite, darunter die vier anderen im Raster */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .loc--feature { order: -1; align-items: stretch; }
+  .loc--feature img { grid-column: 1; grid-row: 1; min-height: 100%; height: 100%; object-fit: cover; }
+  .loc--feature .loc__body { grid-column: 2; grid-row: 1; }
+}

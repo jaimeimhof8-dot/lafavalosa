@@ -99,10 +99,10 @@
       const g = loc.google;
       let rows;
       if (loc.pauseBis && now.date < loc.pauseBis) rows = [["Wieder offen", `ab ${monthYear(loc.pauseBis)}`]];
-      else if (g && g.status === "CLOSED_TEMPORARILY") rows = [["Aktuell", "Vorübergehend geschlossen"]];
-      else if (g && g.status === "CLOSED_PERMANENTLY") rows = [["Aktuell", "Dauerhaft geschlossen"]];
+      else if (g && (g.status === "CLOSED_TEMPORARILY" || g.status === "CLOSED_PERMANENTLY")) rows = []; // der Status-Badge sagt es schon
       else if (loc.zeiten) rows = groupHours(loc.zeiten);
       else return;
+      dl.hidden = !rows.length;
       dl.innerHTML = rows.map(([dt, dd]) => `<dt>${dt}</dt><dd>${dd}</dd>`).join("");
     });
   }
@@ -259,6 +259,12 @@
         <span class="stars" role="img" aria-label="${fmtRating(avg)} von 5 Sternen">${"★".repeat(Math.round(avg))}</span>
         <span class="voices__meta"><strong>${fmtCount(total)} Bewertungen</strong> auf Google · ${stand}</span>`;
       summary.hidden = false;
+
+      const heroRating = $("#heroRating");
+      if (heroRating) {
+        heroRating.textContent = `${fmtRating(avg)} ★`;
+        $("#heroRatingText").textContent = `${fmtCount(total)} Google-Bewertungen`;
+      }
     }
 
     if (!grid) return;
@@ -288,6 +294,8 @@
         <figcaption><strong>${name}</strong><span>${esc(r.zeit)}${LOC_NAME[r.lokal] ? ` · ${LOC_NAME[r.lokal]}` : ""} · <a href="${esc(r.uri || (data.lokale[r.lokal] || {}).maps || MAPS_FALLBACK)}" target="_blank" rel="noopener">auf Google ansehen</a></span></figcaption>`;
       grid.insertBefore(el, cta);
     });
+    // Auf dem Handy ist die Liste ein Wisch-Slider: nach dem Einfügen wieder an den Anfang
+    grid.scrollLeft = 0;
 
     // "Bewerte uns": direkt zum Bewertungsformular des Hauptlokals (Gwatt), wenn Google die Place ID liefert
     const main = (data.lokale || {}).gwatt;
